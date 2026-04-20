@@ -17,7 +17,7 @@ export default function Footer(): React.JSX.Element {
           </p>
           <a
             href="mailto:ibii.code@gmail.com"
-            className="text-md text-purple-400 hover:text-purple-300 transition-colors"
+            className="text-md text-red-400 hover:text-red-300 transition-colors"
           >
             ross@codedink.com
           </a>
@@ -29,7 +29,7 @@ export default function Footer(): React.JSX.Element {
             href="https://www.instagram.com/kasper_taylor/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-purple-500/30 hover:border-purple-500/50 transition-all"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-red-500/30 hover:border-red-500/50 transition-all"
             aria-label="Instagram"
           >
             <Image
@@ -44,7 +44,7 @@ export default function Footer(): React.JSX.Element {
             href="https://github.com/codedink"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-purple-500/30 hover:border-purple-500/50 transition-all"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-red-500/30 hover:border-red-500/50 transition-all"
             aria-label="GitHub"
           >
             <svg
@@ -59,7 +59,7 @@ export default function Footer(): React.JSX.Element {
             href="https://www.linkedin.com/in/codedink/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-purple-500/30 hover:border-purple-500/50 transition-all"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-red-500/30 hover:border-red-500/50 transition-all"
             aria-label="LinkedIn"
           >
             <svg

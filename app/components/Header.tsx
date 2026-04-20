@@ -9,7 +9,7 @@ export default function Header(): React.JSX.Element {
         <div className="container mx-auto max-w-6xl flex items-center justify-between h-full">
           <Link 
             href="/" 
-            className="text-2xl font-bold text-white hover:text-purple-400 transition-colors"
+            className="text-2xl font-bold text-white hover:text-red-400 transition-colors"
           >
           <Image src={asset("/logo/logo.svg")} alt="Logo" width={190} height={56} style={{ width: "auto", height: "56px" }} />
           </Link>
@@ -17,7 +17,7 @@ export default function Header(): React.JSX.Element {
             <li className="m-0 p-0">
               <Link
                 href="/#home"
-                className="text-white hover:text-purple-400 transition-colors text-base font-normal"
+                className="text-white hover:text-red-400 transition-colors text-base font-normal"
               >
                 Home
               </Link>
@@ -25,7 +25,7 @@ export default function Header(): React.JSX.Element {
             <li className="m-0 p-0">
               <Link
                 href="/#about"
-                className="text-white hover:text-purple-400 transition-colors text-base font-normal"
+                className="text-white hover:text-red-400 transition-colors text-base font-normal"
               >
                 About
               </Link>
@@ -33,7 +33,7 @@ export default function Header(): React.JSX.Element {
             <li className="m-0 p-0">
               <Link
                 href="/services"
-                className="text-white hover:text-purple-400 transition-colors text-base font-normal"
+                className="text-white hover:text-red-400 transition-colors text-base font-normal"
               >
                 Services
               </Link>
@@ -41,7 +41,7 @@ export default function Header(): React.JSX.Element {
             <li className="m-0 p-0">
               <Link
                 href="/portfolio"
-                className="text-white hover:text-purple-400 transition-colors text-base font-normal"
+                className="text-white hover:text-red-400 transition-colors text-base font-normal"
               >
                 Portfolio
               </Link>

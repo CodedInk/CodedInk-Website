@@ -69,7 +69,7 @@ export default function Banner(): React.JSX.Element {
                   <div className="relative">
                     <p className="text-white text-lg whitespace-nowrap">
                       Hello! I Am{" "}
-                      <span className="text-purple-400">Ross Taylor</span>
+                      <span className="text-red-400">Ross Taylor</span>
                     </p>
                   </div>
                   <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-white/10"></div>
@@ -109,7 +109,7 @@ export default function Banner(): React.JSX.Element {
               <div style={{ bottom: 40, position: "relative" }}>
                 <p className="text-white text-lg">
                   Hello! I Am{" "}
-                  <span className="text-purple-400">Ross Taylor</span>
+                  <span className="text-red-400">Ross Taylor</span>
                 </p>
               </div>
               <div className="absolute -bottom-2 left-8 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-white/10"></div>
@@ -121,7 +121,7 @@ export default function Banner(): React.JSX.Element {
                 <br /> by its{" "}
                 <span className="relative inline-block">
                   <Image src={asset("/assets/circle.png")} alt="Circle" width={200} height={200} className="absolute mt-2" />
-                  <span className="bg-gradient-to-r from-violet-600 via-violet-400 to-violet-600 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-red-600 via-rose-400 to-red-600 bg-clip-text text-transparent">
                     cover
                   </span>
                 </span>
@@ -142,7 +142,7 @@ export default function Banner(): React.JSX.Element {
             <span>Currently, I&apos;m a UX/UI Designer at</span>
             <span className="flex items-center gap-2">
               <Image src={asset("/assets/coded-ink-icon.jpg")} alt="CodedInk" width={20} height={20} className="w-5 h-5" />
-              <span className="text-blue-400 font-semibold">CodedInk</span>
+              <span className="text-fuchsia-400 font-semibold">CodedInk</span>
             </span>
           </p>
           <p className="text-lg text-white/80 max-w-2xl mt-15 mx-auto lg:mx-0">

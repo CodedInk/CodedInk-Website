@@ -40,7 +40,7 @@ export default function Projects(): React.JSX.Element {
               }`}>
                 {/* Text Content */}
                 <div className={`${isEven ? "lg:col-start-2" : ""}`}>
-                  <p className="text-purple-400 text-lg lg:text-xl mb-2 font-medium">
+                  <p className="text-red-400 text-lg lg:text-xl mb-2 font-medium">
                     Featured Project
                   </p>
                   <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6">
@@ -63,7 +63,7 @@ export default function Projects(): React.JSX.Element {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white hover:text-purple-400 transition-colors duration-200"
+                        className="text-white hover:text-red-400 transition-colors duration-200"
                         aria-label="Visit project website"
                       >
                         <svg
