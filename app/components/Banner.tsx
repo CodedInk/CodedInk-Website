@@ -142,7 +142,7 @@ export default function Banner(): React.JSX.Element {
             <span>Currently, I&apos;m a UX/UI Designer at</span>
             <span className="flex items-center gap-2">
               <Image src={asset("/assets/coded-ink-icon.jpg")} alt="CodedInk" width={20} height={20} className="w-5 h-5" />
-              <span className="text-fuchsia-400 font-semibold">CodedInk</span>
+              <span className="text-red-400 font-semibold">CodedInk</span>
             </span>
           </p>
           <p className="text-lg text-white/80 max-w-2xl mt-15 mx-auto lg:mx-0">
