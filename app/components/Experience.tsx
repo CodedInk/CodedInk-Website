@@ -25,7 +25,7 @@ const experienceCards: ExperienceCard[] = [
   {
     id: 3,
     title: "HealthEdge - Lead UX/UI Designer",
-    description: "HealthEdge, is a AI-Powered Healthcare Platform for payers connecting health plans, providers, and patients. It offers end-to-end digital solutions that automate operations and serve over 115 health plans and 110 million covered members across the U.S.. ",
+    description: "HealthEdge, is a AI-Powered Healthcare Platform for payers connecting health plans, providers, and patients. It services over 115 health plans and 110 million covered members across the U.S.. ",
     icon: "/cards/card-3.png",
   },
   {
