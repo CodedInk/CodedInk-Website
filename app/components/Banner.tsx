@@ -135,7 +135,7 @@ export default function Banner(): React.JSX.Element {
         </div>
         <div className="space-y-3 pt-15 text-center lg:text-left">
           <p className="text-5xl text-white font-bold">
-            I&apos;m a {displayedText}
+            I&apos;m a <span className="bg-gradient-to-r from-red-600 via-rose-400 to-red-600 bg-clip-text text-transparent">{displayedText}</span>
             <span className="animate-pulse">|</span>
           </p>
           <p className="text-lg lg:text-xl text-white/90 tracking-wide flex flex-wrap items-center justify-center lg:justify-start gap-2">
