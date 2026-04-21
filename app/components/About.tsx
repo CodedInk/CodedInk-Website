@@ -107,7 +107,7 @@ export default function About(): React.JSX.Element {
               className="absolute"
               style={{
                 left: "50%",
-                top: "36%",
+                top: "35%",
                 width: "11%",
                 height: "auto",
                 transform: "translate(-50%, -50%)",
