@@ -100,7 +100,7 @@ export default function About(): React.JSX.Element {
               aria-hidden="true"
             />
             <Image
-              src={asset("/assets/favicon.svg")}
+              src={asset("/assets/drop.svg")}
               alt="CodedInk"
               width={140}
               height={140}
