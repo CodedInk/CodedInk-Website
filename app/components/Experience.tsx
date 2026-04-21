@@ -12,7 +12,7 @@ interface ExperienceCard {
 const experienceCards: ExperienceCard[] = [
   {
     id: 1,
-    title: "WebHR - HR Management App",
+    title: "WIPRO - HR Management App",
     description: "WebHR automates all of your company's HR processes such as Recruitment, Onboarding, Payroll, Time & Attendance, Leaves & PTO, Performance, and much more.",
     icon: "/cards/card-1.png",
   },
@@ -24,14 +24,14 @@ const experienceCards: ExperienceCard[] = [
   },
   {
     id: 3,
-    title: "HealthEdge - AI-Powered Agents",
-    description: "Connecting health plans, providers, and patients with end-to-end digital technology solutions to support new business models, reduce administrative costs and improve health outcomes.",
+    title: "HealthEdge - AI-Powered Healthcare Platform",
+    description: "HealthEdge, is a AI-enabled platform for healthcare payers connecting health plans, providers, and patients. It offers end-to-end digital solutions that automate operations and serve over 115 health plans and 110 million covered members across the U.S.. ",
     icon: "/cards/card-3.png",
   },
   {
     id: 4,
-    title: "FileIT - File Sharing App",
-    description: "FileIT is a file sharing app that allows you to share files with your friends and family. It is a simple and easy to use app that allows you to share files with your friends and family.",
+    title: "Aflac© - Supplemental Insurance Provider",
+    description: "Aflac specializes in voluntary supplemental insurance.. Based in Columbus, Georgia, it is a Fortune 500 company serving millions of policyholders in the U.S. and Japan.",
     icon: "/cards/card-4.png",
   },
 ];
