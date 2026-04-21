@@ -140,7 +140,7 @@ export default function Portfolio(): React.JSX.Element {
                 placeholder="Enter the key"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full rounded-lg bg-white/10 border border-white/10 px-3 py-2.5 text-white placeholder-white/30 outline-none focus:border-red-500 transition-colors"
+                className="neon-input w-full rounded-lg bg-white/10 border border-white/10 px-3 py-2.5 text-white placeholder-white/30 outline-none transition-all"
               />
               {error && (
                 <p className="text-red-400 text-sm mt-2">{error}</p>

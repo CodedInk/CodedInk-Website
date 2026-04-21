@@ -50,7 +50,7 @@ export default function Experience(): React.JSX.Element {
               className="bg-gradient-to-r from-slate-950 via-red-950 to-slate-950 backdrop-blur-sm rounded-xl p-6 border-t-2 border-red-400 flex items-center gap-4"
               style={{
                 boxShadow:
-                  "0 -1px 0 rgba(255, 230, 230, 0.95), 0 -2px 8px rgba(255, 120, 140, 1), 0 -4px 18px rgba(239, 68, 68, 0.9), 0 -6px 36px rgba(239, 68, 68, 0.55), 0 -10px 60px rgba(220, 38, 38, 0.3)",
+                  "0 -1px 0 rgba(255, 230, 230, 0.95), 0 -2px 6px rgba(255, 120, 140, 0.9), 0 -3px 12px rgba(239, 68, 68, 0.55)",
               }}
             >
               <div className="mb-4 shrink-0">
