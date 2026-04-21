@@ -4,13 +4,7 @@ import { asset } from "../lib/asset";
 
 export default function Header(): React.JSX.Element {
   return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50 bg-[#110720]/80 backdrop-blur-sm border-b border-red-400"
-      style={{
-        boxShadow:
-          "0 1px 0 rgba(255, 230, 230, 0.95), 0 0 6px rgba(255, 120, 140, 1), 0 0 18px rgba(239, 68, 68, 0.9), 0 0 36px rgba(239, 68, 68, 0.6), 0 0 72px rgba(220, 38, 38, 0.35)",
-      }}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#110720]/80 backdrop-blur-sm border-b border-white/10">
       <nav className="px-6 py-4">
         <div className="container mx-auto max-w-6xl flex items-center justify-between h-full">
           <Link 

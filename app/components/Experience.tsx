@@ -47,11 +47,7 @@ export default function Experience(): React.JSX.Element {
           {experienceCards.map((card) => (
             <div
               key={card.id}
-              className="bg-gradient-to-r from-slate-950 via-red-950 to-slate-950 backdrop-blur-sm rounded-xl p-6 border-t-2 border-red-400 flex items-center gap-4"
-              style={{
-                boxShadow:
-                  "0 -1px 0 rgba(255, 230, 230, 0.95), 0 -2px 6px rgba(255, 120, 140, 0.9), 0 -3px 12px rgba(239, 68, 68, 0.55)",
-              }}
+              className="bg-gradient-to-r from-slate-950 via-red-950 to-slate-950 backdrop-blur-sm rounded-xl p-6 border-t-3 border-red-700 hover:shadow-2xl hover:shadow-red-900 flex items-center gap-4"
             >
               <div className="mb-4 shrink-0">
                 <Image
