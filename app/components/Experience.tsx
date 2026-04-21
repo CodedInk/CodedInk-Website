@@ -49,13 +49,14 @@ export default function Experience(): React.JSX.Element {
               key={card.id}
               className="bg-gradient-to-r from-slate-950 via-red-950 to-slate-950  backdrop-blur-sm rounded-xl p-6 border-t-3 border-red-700 hover:shadow-2xl hover:shadow-red-900 flex items-center gap-4"
             >
-              <div className="mb-4 ">
+              <div className="mb-4 shrink-0">
                 <Image
                   src={asset(card.icon)}
                   alt={card.title}
-                  width={160}
-                  height={160}
+                  width={62}
+                  height={62}
                   className="object-contain"
+                  style={{ width: "62px", height: "62px" }}
                 />
               </div>
               <div>
