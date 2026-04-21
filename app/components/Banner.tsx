@@ -141,8 +141,8 @@ export default function Banner(): React.JSX.Element {
           <p className="text-lg lg:text-xl text-white/90 tracking-wide flex flex-wrap items-center justify-center lg:justify-start gap-2">
             <span>Currently, I&apos;m a UX/UI Designer at</span>
             <span className="flex items-center gap-2">
-              <Image src={asset("/assets/glint-icon.svg")} alt="GLINT" width={20} height={20} className="w-5 h-5" />
-              <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent font-bold">GLINT</span>
+              <Image src={asset("/assets/glint-icon.svg")} alt="GLINT" width={32} height={32} className="w-8 h-8" style={{ width: "32px", height: "32px" }} />
+              <span className="text-2xl lg:text-3xl bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent font-bold">GLINT</span>
             </span>
           </p>
           <p className="text-lg text-white/80 max-w-2xl mt-15 mx-auto lg:mx-0">
