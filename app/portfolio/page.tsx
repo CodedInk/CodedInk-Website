@@ -174,6 +174,59 @@ const cases: CaseStudy[] = [
   },
 ];
 
+const allClients: string[] = [
+  "TD Bank",
+  "FedEx",
+  "Estée Lauder",
+  "American Express",
+  "Aflac",
+  "HealthEdge",
+  "PointClickCare",
+  "BYUtv",
+  "Vans Warped Tour",
+  "Honda",
+  "Acura",
+  "Michigan State",
+  "Vodafone",
+  "WIPRO",
+  "Appirio",
+  "Haulynx",
+  "STC Health",
+  "ON Semiconductor",
+  "Nextiva",
+  "CompuGroup Medical",
+  "American Traffic Solutions",
+  "Universal Laser Systems",
+  "Rich Dad Education",
+  "Helix House",
+];
+
+function ClientMarquee(): React.JSX.Element {
+  // Duplicate the list so the keyframes loop is seamless
+  const reel = [...allClients, ...allClients];
+  return (
+    <div className="relative overflow-hidden py-2 group">
+      {/* Edge fades */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#110720] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[#110720] to-transparent" />
+      <div
+        className="flex gap-3 w-max marquee-track group-hover:[animation-play-state:paused]"
+        aria-hidden="false"
+      >
+        {reel.map((c, i) => (
+          <span
+            key={`${c}-${i}`}
+            className="shrink-0 inline-flex items-center gap-2 text-sm text-white/85 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:border-red-500/40 hover:bg-white/[0.08] transition-colors"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
+            {c}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function CaseStudy({ c, index }: { c: CaseStudy; index: number }): React.JSX.Element {
   const Hero = heroByCaseId[c.id];
   return (
@@ -295,25 +348,13 @@ function PortfolioContent(): React.JSX.Element {
             <p className="text-xs uppercase tracking-widest text-white/50 mb-3">
               Past work spans
             </p>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-white/70 text-sm">
-              {[
-                "TD Bank",
-                "FedEx",
-                "Estée Lauder",
-                "American Express",
-                "Aflac",
-                "HealthEdge",
-                "PointClickCare",
-                "BYUtv",
-              ].map((c) => (
-                <span key={c} className="flex items-center gap-2">
-                  <span className="w-1 h-1 rounded-full bg-red-400" />
-                  {c}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
+      </section>
+
+      {/* Marquee */}
+      <section className="pb-16 -mt-2">
+        <ClientMarquee />
       </section>
 
       {/* Index */}
