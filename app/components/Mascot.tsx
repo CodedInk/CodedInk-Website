@@ -89,13 +89,72 @@ const idleQuips = [
   "Hey hey hey — I have shortcuts for that.",
 ];
 
+function MetalHand({
+  cx,
+  cy,
+  flip = false,
+}: {
+  cx: number;
+  cy: number;
+  flip?: boolean;
+}): React.JSX.Element {
+  // Mini "rock horns" hand: little fist with index + pinky up
+  const dir = flip ? -1 : 1;
+  return (
+    <g transform={`translate(${cx} ${cy})`}>
+      {/* fist */}
+      <circle cx="0" cy="0" r="5" fill="#fb7185" stroke="#7f1d1d" strokeWidth="1.2" />
+      {/* index finger */}
+      <line
+        x1={-2 * dir}
+        y1="-3"
+        x2={-2 * dir}
+        y2="-12"
+        stroke="#fb7185"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+      />
+      <line
+        x1={-2 * dir}
+        y1="-3"
+        x2={-2 * dir}
+        y2="-12"
+        stroke="#7f1d1d"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+      />
+      {/* pinky */}
+      <line
+        x1={3 * dir}
+        y1="-3"
+        x2={3 * dir}
+        y2="-10"
+        stroke="#fb7185"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+      <line
+        x1={3 * dir}
+        y1="-3"
+        x2={3 * dir}
+        y2="-10"
+        stroke="#7f1d1d"
+        strokeWidth="0.7"
+        strokeLinecap="round"
+      />
+    </g>
+  );
+}
+
 function DropletBuddy({
   waving,
   bumping,
+  metal,
   size = 96,
 }: {
   waving: boolean;
   bumping: boolean;
+  metal: boolean;
   size?: number;
 }): React.JSX.Element {
   return (
@@ -105,7 +164,7 @@ function DropletBuddy({
       height={size * (140 / 120)}
       aria-hidden="true"
       style={{ overflow: "visible", display: "block" }}
-      className={bumping ? "ink-bumping" : "ink-idle"}
+      className={bumping ? "ink-bumping" : metal ? "ink-headbang" : "ink-idle"}
     >
       <defs>
         <linearGradient id="ink-body" x1="0" y1="0" x2="0" y2="1">
@@ -153,13 +212,18 @@ function DropletBuddy({
           d="M60 8 C 30 50, 18 78, 30 98 C 42 118, 78 118, 90 98 C 102 78, 90 50, 60 8 Z"
           fill="url(#ink-shine)"
         />
-        {/* Eyes - bumping makes them squint shock */}
+        {/* Eyes — bumping=shock X, metal=cheeky squint, default=blinking */}
         {bumping ? (
           <g stroke="#1a0a1a" strokeWidth="2.5" strokeLinecap="round">
             <line x1="42" y1="76" x2="54" y2="80" />
             <line x1="42" y1="80" x2="54" y2="76" />
             <line x1="66" y1="76" x2="78" y2="80" />
             <line x1="66" y1="80" x2="78" y2="76" />
+          </g>
+        ) : metal ? (
+          <g stroke="#1a0a1a" strokeWidth="2.5" strokeLinecap="round" fill="none">
+            <path d="M 42 78 Q 48 74, 54 78" />
+            <path d="M 66 78 Q 72 74, 78 78" />
           </g>
         ) : (
           <>
@@ -190,9 +254,26 @@ function DropletBuddy({
         {/* Cheeks */}
         <circle cx="42" cy="92" r="4" fill="#fb7185" opacity="0.5" />
         <circle cx="78" cy="92" r="4" fill="#fb7185" opacity="0.5" />
-        {/* Mouth — open "O" when bumping, smile otherwise */}
+        {/* Mouth — bumping=O, metal=tongue out, default=smile */}
         {bumping ? (
           <ellipse cx="60" cy="100" rx="5" ry="6" fill="#1a0a1a" />
+        ) : metal ? (
+          <g>
+            <path
+              d="M 50 96 Q 60 106, 70 96"
+              fill="#1a0a1a"
+              stroke="#1a0a1a"
+              strokeWidth="2"
+              strokeLinejoin="round"
+            />
+            {/* tongue */}
+            <path
+              d="M 56 100 Q 60 110, 64 100 Z"
+              fill="#fb7185"
+              stroke="#7f1d1d"
+              strokeWidth="0.8"
+            />
+          </g>
         ) : (
           <path
             d="M 52 96 Q 60 102, 68 96"
@@ -204,51 +285,78 @@ function DropletBuddy({
         )}
       </g>
 
-      {/* Left arm — bumping = palms up */}
-      <g
-        stroke="#7f1d1d"
-        strokeWidth="3"
-        strokeLinecap="round"
-        fill="none"
-      >
-        <path d={bumping ? "M28 86 Q 14 84, 14 72" : "M28 86 Q 18 92, 22 102"} />
-      </g>
-      <circle
-        cx={bumping ? 14 : 22}
-        cy={bumping ? 72 : 102}
-        r="4"
-        fill="#fb7185"
-        stroke="#7f1d1d"
-        strokeWidth="1.5"
-      />
-
-      {/* Right arm — waves on greet, palm up when bumping */}
-      <g style={{ transformOrigin: "92px 84px" }}>
-        {waving && !bumping && (
-          <animateTransform
-            attributeName="transform"
-            type="rotate"
-            values="0 92 84; -25 92 84; 15 92 84; -25 92 84; 0 92 84"
-            dur="1.4s"
-            repeatCount="3"
+      {/* LEFT ARM */}
+      {metal ? (
+        <>
+          <path
+            d="M28 86 Q 14 60, 18 36"
+            stroke="#7f1d1d"
+            strokeWidth="3"
+            strokeLinecap="round"
+            fill="none"
           />
-        )}
-        <path
-          d={bumping ? "M92 86 Q 106 84, 106 72" : "M92 86 Q 104 80, 104 70"}
-          stroke="#7f1d1d"
-          strokeWidth="3"
-          strokeLinecap="round"
-          fill="none"
-        />
-        <circle
-          cx={bumping ? 106 : 104}
-          cy={bumping ? 72 : 70}
-          r="4.5"
-          fill="#fb7185"
-          stroke="#7f1d1d"
-          strokeWidth="1.5"
-        />
-      </g>
+          <MetalHand cx={18} cy={36} flip />
+        </>
+      ) : (
+        <>
+          <path
+            d={bumping ? "M28 86 Q 14 84, 14 72" : "M28 86 Q 18 92, 22 102"}
+            stroke="#7f1d1d"
+            strokeWidth="3"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <circle
+            cx={bumping ? 14 : 22}
+            cy={bumping ? 72 : 102}
+            r="4"
+            fill="#fb7185"
+            stroke="#7f1d1d"
+            strokeWidth="1.5"
+          />
+        </>
+      )}
+
+      {/* RIGHT ARM */}
+      {metal ? (
+        <>
+          <path
+            d="M92 86 Q 106 60, 102 36"
+            stroke="#7f1d1d"
+            strokeWidth="3"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <MetalHand cx={102} cy={36} />
+        </>
+      ) : (
+        <g style={{ transformOrigin: "92px 84px" }}>
+          {waving && !bumping && (
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              values="0 92 84; -25 92 84; 15 92 84; -25 92 84; 0 92 84"
+              dur="1.4s"
+              repeatCount="3"
+            />
+          )}
+          <path
+            d={bumping ? "M92 86 Q 106 84, 106 72" : "M92 86 Q 104 80, 104 70"}
+            stroke="#7f1d1d"
+            strokeWidth="3"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <circle
+            cx={bumping ? 106 : 104}
+            cy={bumping ? 72 : 70}
+            r="4.5"
+            fill="#fb7185"
+            stroke="#7f1d1d"
+            strokeWidth="1.5"
+          />
+        </g>
+      )}
     </svg>
   );
 }
@@ -259,9 +367,11 @@ export default function Mascot(): React.JSX.Element | null {
   const [step, setStep] = useState<Step>("greeting");
   const [waving, setWaving] = useState(false);
   const [bumping, setBumping] = useState(false);
+  const [metal, setMetal] = useState(false);
   const [hasGreeted, setHasGreeted] = useState(false);
   const [quip, setQuip] = useState<string | null>(null);
   const quipTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const metalTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -292,7 +402,6 @@ export default function Mascot(): React.JSX.Element | null {
         setQuip(q);
         setBumping(true);
         setTimeout(() => setBumping(false), 600);
-        // Auto-dismiss the quip after a moment
         setTimeout(() => setQuip(null), 5000);
         scheduleQuip();
       }, wait);
@@ -300,6 +409,30 @@ export default function Mascot(): React.JSX.Element | null {
     scheduleQuip();
     return () => {
       if (quipTimer.current) clearTimeout(quipTimer.current);
+    };
+  }, [mounted, open]);
+
+  // Periodic metal-horns moment, much rarer than quips, only when chat closed
+  useEffect(() => {
+    if (!mounted || open) {
+      if (metalTimer.current) clearTimeout(metalTimer.current);
+      return;
+    }
+    function scheduleMetal(): void {
+      const wait = 35000 + Math.random() * 60000; // 35-95s
+      metalTimer.current = setTimeout(() => {
+        setMetal(true);
+        setQuip("🤘 ROCK ON 🤘");
+        setTimeout(() => {
+          setMetal(false);
+          setQuip(null);
+        }, 2400);
+        scheduleMetal();
+      }, wait);
+    }
+    scheduleMetal();
+    return () => {
+      if (metalTimer.current) clearTimeout(metalTimer.current);
     };
   }, [mounted, open]);
 
@@ -405,7 +538,7 @@ export default function Mascot(): React.JSX.Element | null {
             <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500" />
           </span>
         )}
-        <DropletBuddy waving={waving} bumping={bumping} size={96} />
+        <DropletBuddy waving={waving} bumping={bumping} metal={metal} size={96} />
       </button>
     </div>
   );

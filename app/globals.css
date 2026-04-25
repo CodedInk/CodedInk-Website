@@ -84,6 +84,16 @@ img {
 .ink-idle {
   animation: ink-idle 3s ease-in-out infinite;
 }
+@keyframes ink-headbang {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  20%      { transform: translateY(-2px) rotate(-4deg); }
+  40%      { transform: translateY(2px) rotate(2deg); }
+  60%      { transform: translateY(-2px) rotate(-3deg); }
+  80%      { transform: translateY(1px) rotate(2deg); }
+}
+.ink-headbang {
+  animation: ink-headbang 0.4s ease-in-out infinite;
+}
 @keyframes ink-pop {
   from { opacity: 0; transform: translateY(8px) scale(0.94); }
   to   { opacity: 1; transform: translateY(0)   scale(1); }
