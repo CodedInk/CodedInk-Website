@@ -89,6 +89,59 @@ const idleQuips = [
   "Hey hey hey — I have shortcuts for that.",
 ];
 
+// Match the CodedInk logo's red palette
+const TILE_PALETTE = [
+  "#fecaca",
+  "#fca5a5",
+  "#fda4af",
+  "#f87171",
+  "#fb7185",
+  "#f43f5e",
+  "#ef4444",
+  "#dc2626",
+  "#e11d48",
+  "#be123c",
+  "#b91c1c",
+  "#991b1b",
+  "#7f1d1d",
+  "#450a0a",
+];
+
+// Deterministic pseudo-noise per (x,y) for a stable pixel pattern
+function tilePick(x: number, y: number): string {
+  const n = Math.abs(Math.sin(x * 12.9898 + y * 78.233) * 43758.5453);
+  const noise = n - Math.floor(n); // 0..1
+  // Vertical lightness gradient (top lighter), horizontal accent, noisy variance
+  const v = (y - 8) / 110; // 0..1 top→bottom
+  const h = Math.abs((x - 60) / 50); // 0..1 center→edge
+  const t = Math.min(0.999, Math.max(0, v * 0.55 + h * 0.15 + noise * 0.3));
+  return TILE_PALETTE[Math.floor(t * TILE_PALETTE.length)];
+}
+
+function PixelDropBody(): React.JSX.Element {
+  const cell = 6;
+  const tiles: { x: number; y: number; c: string }[] = [];
+  for (let y = 8; y < 120; y += cell) {
+    for (let x = 16; x < 106; x += cell) {
+      tiles.push({ x, y, c: tilePick(x, y) });
+    }
+  }
+  return (
+    <g clipPath="url(#ink-drop-clip)">
+      {tiles.map((t, i) => (
+        <rect
+          key={i}
+          x={t.x}
+          y={t.y}
+          width={cell - 0.5}
+          height={cell - 0.5}
+          fill={t.c}
+        />
+      ))}
+    </g>
+  );
+}
+
 function MetalHand({
   cx,
   cy,
@@ -167,14 +220,13 @@ function DropletBuddy({
       className={bumping ? "ink-bumping" : metal ? "ink-headbang" : "ink-idle"}
     >
       <defs>
-        <linearGradient id="ink-body" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#fb7185" />
-          <stop offset="100%" stopColor="#dc2626" />
-        </linearGradient>
         <radialGradient id="ink-shine" cx="0.35" cy="0.35" r="0.25">
-          <stop offset="0%" stopColor="#fff" stopOpacity="0.7" />
+          <stop offset="0%" stopColor="#fff" stopOpacity="0.55" />
           <stop offset="100%" stopColor="#fff" stopOpacity="0" />
         </radialGradient>
+        <clipPath id="ink-drop-clip">
+          <path d="M60 8 C 30 50, 18 78, 30 98 C 42 118, 78 118, 90 98 C 102 78, 90 50, 60 8 Z" />
+        </clipPath>
       </defs>
 
       {/* Legs (behind body) */}
@@ -200,17 +252,18 @@ function DropletBuddy({
       <ellipse cx="44" cy="134" rx="6" ry="3" fill="#1a0a1a" />
       <ellipse cx="76" cy="134" rx="6" ry="3" fill="#1a0a1a" />
 
-      {/* Drop body */}
+      {/* Drop body — pixel tiles in the CodedInk style */}
       <g>
-        <path
-          d="M60 8 C 30 50, 18 78, 30 98 C 42 118, 78 118, 90 98 C 102 78, 90 50, 60 8 Z"
-          fill="url(#ink-body)"
-          stroke="#7f1d1d"
-          strokeWidth="1.5"
-        />
+        <PixelDropBody />
         <path
           d="M60 8 C 30 50, 18 78, 30 98 C 42 118, 78 118, 90 98 C 102 78, 90 50, 60 8 Z"
           fill="url(#ink-shine)"
+        />
+        <path
+          d="M60 8 C 30 50, 18 78, 30 98 C 42 118, 78 118, 90 98 C 102 78, 90 50, 60 8 Z"
+          fill="none"
+          stroke="#450a0a"
+          strokeWidth="1.5"
         />
         {/* Eyes — bumping=shock X, metal=cheeky squint, default=blinking */}
         {bumping ? (
