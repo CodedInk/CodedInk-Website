@@ -230,7 +230,7 @@ function DropletBuddy({
       </defs>
 
       {/* Legs (behind body) */}
-      <g stroke="#7f1d1d" strokeWidth="3" strokeLinecap="round">
+      <g stroke="#fb7185" strokeWidth="3.5" strokeLinecap="round">
         <line x1="48" y1="118" x2="44" y2="132">
           <animate
             attributeName="x2"
@@ -248,9 +248,16 @@ function DropletBuddy({
           />
         </line>
       </g>
-      {/* Shoes */}
-      <ellipse cx="44" cy="134" rx="6" ry="3" fill="#1a0a1a" />
-      <ellipse cx="76" cy="134" rx="6" ry="3" fill="#1a0a1a" />
+      {/* Shoes — lighter so they stand out against the dark page bg */}
+      <g>
+        <ellipse cx="44" cy="134" rx="7" ry="3.5" fill="#fff" />
+        <ellipse cx="44" cy="134" rx="7" ry="3.5" fill="none" stroke="#7f1d1d" strokeWidth="1.2" />
+        <ellipse cx="76" cy="134" rx="7" ry="3.5" fill="#fff" />
+        <ellipse cx="76" cy="134" rx="7" ry="3.5" fill="none" stroke="#7f1d1d" strokeWidth="1.2" />
+        {/* Sneaker stripe */}
+        <line x1="38" y1="134" x2="50" y2="134" stroke="#ef4444" strokeWidth="1.4" />
+        <line x1="70" y1="134" x2="82" y2="134" stroke="#ef4444" strokeWidth="1.4" />
+      </g>
 
       {/* Drop body — pixel tiles in the CodedInk style */}
       <g>
