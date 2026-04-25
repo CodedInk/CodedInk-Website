@@ -196,15 +196,10 @@ function DropletBuddy({
           />
         </line>
       </g>
-      {/* Shoes — lighter so they stand out against the dark page bg */}
-      <g>
-        <ellipse cx="44" cy="134" rx="7" ry="3.5" fill="#fff" />
-        <ellipse cx="44" cy="134" rx="7" ry="3.5" fill="none" stroke="#7f1d1d" strokeWidth="1.2" />
-        <ellipse cx="76" cy="134" rx="7" ry="3.5" fill="#fff" />
-        <ellipse cx="76" cy="134" rx="7" ry="3.5" fill="none" stroke="#7f1d1d" strokeWidth="1.2" />
-        {/* Sneaker stripe */}
-        <line x1="38" y1="134" x2="50" y2="134" stroke="#ef4444" strokeWidth="1.4" />
-        <line x1="70" y1="134" x2="82" y2="134" stroke="#ef4444" strokeWidth="1.4" />
+      {/* Feet — simple white lines */}
+      <g stroke="#fff" strokeWidth="3" strokeLinecap="round">
+        <line x1="38" y1="134" x2="50" y2="134" />
+        <line x1="70" y1="134" x2="82" y2="134" />
       </g>
 
       {/* Drop body */}
