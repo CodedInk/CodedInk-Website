@@ -174,54 +174,121 @@ const cases: CaseStudy[] = [
   },
 ];
 
-const allClients: string[] = [
-  "TD Bank",
-  "FedEx",
-  "Estée Lauder",
-  "American Express",
-  "Aflac",
-  "HealthEdge",
-  "PointClickCare",
-  "BYUtv",
-  "Vans Warped Tour",
-  "Honda",
-  "Acura",
-  "Michigan State",
-  "Vodafone",
-  "WIPRO",
-  "Appirio",
-  "Haulynx",
-  "STC Health",
-  "ON Semiconductor",
-  "Nextiva",
-  "CompuGroup Medical",
-  "American Traffic Solutions",
-  "Universal Laser Systems",
-  "Rich Dad Education",
-  "Helix House",
+type Client = {
+  name: string;
+  size: "lg" | "md" | "sm";
+  accent?: string; // brand color
+  initials?: string;
+};
+
+const clients: Client[] = [
+  { name: "TD Bank", size: "lg", accent: "#00B14F", initials: "TD" },
+  { name: "FedEx", size: "lg", accent: "#660099", initials: "Fx" },
+  { name: "Estée Lauder", size: "md", accent: "#000000", initials: "EL" },
+  { name: "American Express", size: "md", accent: "#016FD0", initials: "Ax" },
+  { name: "Aflac", size: "md", accent: "#FF5500", initials: "Af" },
+  { name: "HealthEdge", size: "md", accent: "#0078D4", initials: "He" },
+  { name: "PointClickCare", size: "md", accent: "#1E5FAD", initials: "PC" },
+  { name: "BYUtv", size: "sm", accent: "#002E5D", initials: "BY" },
+  { name: "Vans Warped Tour", size: "sm", accent: "#000000", initials: "VW" },
+  { name: "Honda", size: "sm", accent: "#CC0000", initials: "Hd" },
+  { name: "Acura", size: "sm", accent: "#000000", initials: "Ac" },
+  { name: "Michigan State", size: "sm", accent: "#18453B", initials: "MS" },
+  { name: "Vodafone", size: "sm", accent: "#E60000", initials: "Vo" },
+  { name: "WIPRO", size: "md", accent: "#341F65", initials: "Wp" },
+  { name: "Appirio", size: "sm", accent: "#FF6F2C", initials: "Ap" },
+  { name: "Haulynx", size: "sm", accent: "#1E40AF", initials: "Hx" },
+  { name: "STC Health", size: "sm", accent: "#0EA5E9", initials: "St" },
+  { name: "ON Semiconductor", size: "sm", accent: "#FF6600", initials: "On" },
+  { name: "Nextiva", size: "sm", accent: "#FF7A00", initials: "Nx" },
+  { name: "CompuGroup Medical", size: "sm", accent: "#0075BB", initials: "Cg" },
+  { name: "American Traffic Solutions", size: "sm", accent: "#003B5C", initials: "AT" },
+  { name: "Universal Laser Systems", size: "sm", accent: "#1F2937", initials: "Ul" },
+  { name: "Rich Dad Education", size: "sm", accent: "#7C2D12", initials: "Rd" },
+  { name: "Helix House", size: "sm", accent: "#9F1239", initials: "Hh" },
 ];
 
-function ClientMarquee(): React.JSX.Element {
-  // Duplicate the list so the keyframes loop is seamless
-  const reel = [...allClients, ...allClients];
+function ClientChip({
+  c,
+  index,
+}: {
+  c: Client;
+  index: number;
+}): React.JSX.Element {
+  const sizeClasses =
+    c.size === "lg"
+      ? "col-span-2 row-span-2 p-5"
+      : c.size === "md"
+        ? "col-span-2 row-span-1 p-4"
+        : "col-span-1 row-span-1 p-3";
+
+  // Stagger entrance + per-item drift phase
+  const delay = (index * 0.08).toFixed(2);
+  const drift = ((index * 0.7) % 2).toFixed(2);
+
   return (
-    <div className="relative overflow-hidden py-2 group">
-      {/* Edge fades */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#110720] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[#110720] to-transparent" />
+    <div
+      className={`client-chip group relative ${sizeClasses} rounded-2xl border border-white/10 bg-gradient-to-br from-slate-950 to-slate-950/40 backdrop-blur-sm overflow-hidden cursor-default`}
+      style={
+        {
+          ["--accent" as string]: c.accent ?? "#ef4444",
+          ["--delay" as string]: `${delay}s`,
+          ["--drift" as string]: `${drift}s`,
+        } as React.CSSProperties
+      }
+    >
+      {/* Brand color glow that intensifies on hover */}
       <div
-        className="flex gap-3 w-max marquee-track group-hover:[animation-play-state:paused]"
-        aria-hidden="false"
-      >
-        {reel.map((c, i) => (
-          <span
-            key={`${c}-${i}`}
-            className="shrink-0 inline-flex items-center gap-2 text-sm text-white/85 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:border-red-500/40 hover:bg-white/[0.08] transition-colors"
+        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+        style={{
+          background: `radial-gradient(circle at center, ${c.accent ?? "#ef4444"} 0%, transparent 70%)`,
+        }}
+      />
+      <div className="relative z-10 flex flex-col h-full justify-between gap-2">
+        {/* Initials badge */}
+        <div className="flex items-center justify-between">
+          <div
+            className="flex items-center justify-center font-bold text-xs tracking-tight"
+            style={{
+              width: c.size === "lg" ? 36 : 28,
+              height: c.size === "lg" ? 36 : 28,
+              borderRadius: 8,
+              background: c.accent,
+              color: "#fff",
+            }}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-red-400" />
-            {c}
-          </span>
-        ))}
+            {c.initials}
+          </div>
+          <span
+            className="w-1.5 h-1.5 rounded-full opacity-60 group-hover:opacity-100 transition-opacity"
+            style={{ background: c.accent }}
+          />
+        </div>
+        <div
+          className={`text-white font-semibold leading-tight ${
+            c.size === "lg"
+              ? "text-lg"
+              : c.size === "md"
+                ? "text-sm"
+                : "text-xs"
+          }`}
+        >
+          {c.name}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ClientShowcase(): React.JSX.Element {
+  return (
+    <div className="px-6">
+      <div className="container mx-auto max-w-5xl">
+        <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 client-grid">
+          {clients.map((c, i) => (
+            <ClientChip key={c.name} c={c} index={i} />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -352,9 +419,9 @@ function PortfolioContent(): React.JSX.Element {
         </div>
       </section>
 
-      {/* Marquee */}
+      {/* Client showcase */}
       <section className="pb-16 -mt-2">
-        <ClientMarquee />
+        <ClientShowcase />
       </section>
 
       {/* Index */}

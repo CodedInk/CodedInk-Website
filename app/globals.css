@@ -39,22 +39,55 @@ img {
   display: block;
 }
 
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+/* Client chip kinetic grid */
+@keyframes chip-rise {
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
 }
-
-.marquee-track {
-  animation: marquee 50s linear infinite;
+@keyframes chip-drift {
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(-3px) rotate(0.4deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+.client-chip {
+  opacity: 0;
+  animation: chip-rise 0.6s ease-out forwards var(--delay, 0s),
+             chip-drift 4s ease-in-out infinite calc(var(--delay, 0s) + var(--drift, 0s));
+  transition: transform 0.25s ease, border-color 0.25s ease;
   will-change: transform;
 }
-
+.client-chip:hover {
+  transform: translateY(-4px) scale(1.04);
+  border-color: var(--accent, #ef4444);
+  z-index: 5;
+}
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
-  }
+  .client-chip { animation: chip-rise 0.4s ease-out forwards; }
+}
+
+/* Ink mascot reactions */
+@keyframes ink-bump {
+  0%   { transform: translateX(0) rotate(0deg); }
+  20%  { transform: translateX(-6px) rotate(-3deg); }
+  40%  { transform: translateX(8px) rotate(4deg); }
+  60%  { transform: translateX(-5px) rotate(-2deg); }
+  80%  { transform: translateX(3px) rotate(1deg); }
+  100% { transform: translateX(0) rotate(0deg); }
+}
+@keyframes ink-idle {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+.ink-bumping {
+  animation: ink-bump 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+.ink-idle {
+  animation: ink-idle 3s ease-in-out infinite;
+}
+@keyframes ink-pop {
+  from { opacity: 0; transform: translateY(8px) scale(0.94); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+.ink-pop {
+  animation: ink-pop 0.3s ease-out both;
 }
